@@ -16,21 +16,34 @@ treeMethods.addChild = function(value) {
   this.children.push(new Tree(value));
 };
 
-treeMethods.contains = function(target) {
-  //debugger;
-  if (this.value === target) {
+treeMethods.contains = function(target, wasFound) {
+ 
+  // wasFound = wasFound || false;
+
+  // if (this.value === target) {
+  //   wasFound = true;
+  //   return wasFound;
+  // }
+
+  wasFound = wasFound || this.value === target;
+
+  if (wasFound) {
     return true;
-  } else if (this.children.length > 0) {
-    for (var i = 0; i < this.children.length; i++) {
-      this.children[i].contains(target);
-    }
-  } else {
-    return false;
   }
+
+  for (var i = 0; i < this.children.length; i++) {
+    wasFound = this.children[i].contains(target, wasFound);
+  }
+
+  return wasFound;
 };
 
 
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ addChild - Constant: Simple operation
+ contains - Best case log, worst case linear: if value is found early, don't have
+ to loop through all children;
+ otherwise will loop until end to return false 
  */
