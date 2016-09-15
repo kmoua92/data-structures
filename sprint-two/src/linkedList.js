@@ -51,6 +51,7 @@ var Node = function(value) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
- Complexity is linear. It has to traverse the linked list to find
- a node or value.
+ addToTail: constant - no loop; simple operations
+ removeHead: constant - no loop; simple operations
+ contains: linear - one loop
  */
