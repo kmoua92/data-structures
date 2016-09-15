@@ -52,4 +52,9 @@ describe('linkedList', function() {
   });
 
   // add more tests here to test the functionality of linkedList
+  it ('should have a head node if tail is added to empty linkedList', function() {
+    linkedList.addToTail(4);
+    expect(linkedList.head.value).to.equal(4);
+  });
+
 });
