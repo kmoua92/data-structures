@@ -7,33 +7,42 @@ var HashTable = function() {
 
 HashTable.prototype.insert = function(key, value) {
   var index = getIndexBelowMaxForKey(key, this._limit);
-  // console.log(this);
   var bucket = this._storage.get(index);
-  // if storage bucket is empty
-    // make bucket array
-    // append first tuple to bucket
-  // else
-    // get current bucket
-    // append current tuple to bucket
 
-  var node = {index: index, key: key, value: value};
-  this._storage.set(index, node);
+  if (!bucket) {
+    bucket = [];
+  }
+
+  bucket.push([key, value]);
+
+  this._storage.set(index, bucket);
 };
 
 HashTable.prototype.retrieve = function(key) {
   var index = getIndexBelowMaxForKey(key, this._limit);
-  var retNode = this._storage.get(index);
-  return retNode.value;
+  var bucket = this._storage.get(index);
+  var tupleValue;
+
+  for (var i = 0; i < bucket.length; i++) {
+    if (bucket[i][0] === key) {
+      tupleValue = bucket[i][1];
+    }
+  }
+  return tupleValue;
 };
 
 HashTable.prototype.remove = function(key) {
   var index = getIndexBelowMaxForKey(key, this._limit);
-  // retrieve bucket for an index
-  // loop through tuples in bucket
-  // remove the target tuple
-  // re-insert bucket into index
+  var bucket = this._storage.get(index);
+  var newBucket = [];
 
-  this._storage.set(index, undefined);
+  for (var i = 0; i < bucket.length; i++) {
+    if (bucket[i][0] !== key) {
+      newBucket.push([bucket[i][0], bucket[i][1]]);
+    }
+  }
+
+  this._storage.set(index, newBucket);  
 };
 
 
