@@ -68,4 +68,26 @@ describe('graph', function() {
     expect(graph.hasEdge(3, 5)).to.equal(true);
     expect(graph.hasEdge(5, 5)).to.equal(true);
   });
+
+  it('should be an undirected graph', function() {
+    graph.addNode(5);
+    graph.addNode(2);
+    graph.addNode(1);
+    graph.addNode(3);
+    expect(graph.hasEdge(2, 5)).to.equal(false);
+    expect(graph.hasEdge(1, 5)).to.equal(false);
+    expect(graph.hasEdge(3, 5)).to.equal(false);
+    expect(graph.hasEdge(5, 5)).to.equal(false);
+  });
+
+  // it should not add edge if edge already exists
+  it ('should not add edge if edge already exists', function() {
+    graph.addNode(5);
+    graph.addNode(4);
+    graph.addEdge(5, 4);
+    graph.addEdge(4, 5);
+    graph.removeEdge(5, 4);
+    expect(graph.hasEdge(4, 5)).to.equal(false);
+  });
+  // 
 });
