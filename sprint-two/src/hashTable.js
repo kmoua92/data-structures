@@ -23,12 +23,14 @@ HashTable.prototype.retrieve = function(key) {
   var bucket = this._storage.get(index);
   var tupleValue;
 
-  for (var i = 0; i < bucket.length; i++) {
-    if (bucket[i][0] === key) {
-      tupleValue = bucket[i][1];
+  
+  return _.reduce(bucket, function(tupleVal, tuple) {
+    if (tuple[0] === key) {
+      tupleVal = tuple[1];
     }
-  }
-  return tupleValue;
+    return tupleVal;
+  }, tupleValue);
+
 };
 
 HashTable.prototype.remove = function(key) {
@@ -36,11 +38,11 @@ HashTable.prototype.remove = function(key) {
   var bucket = this._storage.get(index);
   var newBucket = [];
 
-  for (var i = 0; i < bucket.length; i++) {
-    if (bucket[i][0] !== key) {
-      newBucket.push([bucket[i][0], bucket[i][1]]);
+  _.each(bucket, function(tuple) {
+    if (tuple[0] !== key) {
+      newBucket.push([tuple[0], tuple[1]]);
     }
-  }
+  });
 
   this._storage.set(index, newBucket);  
 };
@@ -49,6 +51,11 @@ HashTable.prototype.remove = function(key) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ insert = constant; simple push of new bucket
+ retrieve = linear; must traverse through all tuples in bucket
+ remove = linear; traverse through bucket to rebuild bucket with only
+  keys that should remain
+
  */
 
 
