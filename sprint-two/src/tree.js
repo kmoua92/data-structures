@@ -43,7 +43,5 @@ treeMethods.contains = function(target, wasFound) {
 /*
  * Complexity: What is the time complexity of the above functions?
  addChild - Constant: Simple operation
- contains - Best case log, worst case linear: if value is found early, don't have
- to loop through all children;
- otherwise will loop until end to return false 
+ contains - Linear: traverses tree 
  */
