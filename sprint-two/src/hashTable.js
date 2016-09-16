@@ -8,23 +8,30 @@ var HashTable = function() {
 HashTable.prototype.insert = function(key, value) {
   var index = getIndexBelowMaxForKey(key, this._limit);
   // console.log(this);
-  // this._storage.each(function(item) {
-  //   console.log(item);
-  //   if (storIndex === index) {
-  //     console.log('something here');
-  //   } else {
-  //   }
-  // });
-  this._storage.set(index, value);
+  // if storage bucket is empty
+    // make nodes object
+    // append first node to nodes
+  // else
+    // get current nodes object
+    // append current node to nodes
+
+  var node = {index: index, key: key, value: value};
+  this._storage.set(index, node);
 };
 
 HashTable.prototype.retrieve = function(key) {
   var index = getIndexBelowMaxForKey(key, this._limit);
-  return this._storage.get(index);
+  var retNode = this._storage.get(index);
+  return retNode.value;
 };
 
 HashTable.prototype.remove = function(key) {
   var index = getIndexBelowMaxForKey(key, this._limit);
+  // retrieve all of the nodes in an index
+  // loop through all the nodes
+  // remove the target node
+  // re-insert all nodes into the key
+
   this._storage.set(index, undefined);
 };
 
