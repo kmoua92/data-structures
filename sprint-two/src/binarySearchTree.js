@@ -22,8 +22,19 @@ BST.prototype.insert = function(value) {
   }
 };
 
-BST.prototype.contains = function(value) {
+BST.prototype.contains = function(target) {
   // returns a boolean
+  if (this.value === target) {
+    return true;
+  }
+
+  if (this.right && target > this.value) {
+    return this.right.contains(target);
+  } else if (this.left && target < this.value) {
+    return this.left.contains(target);
+  } else {
+    return false;
+  }
 
 };
 
