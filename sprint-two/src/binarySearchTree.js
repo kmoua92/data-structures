@@ -38,9 +38,23 @@ BST.prototype.contains = function(target) {
 
 };
 
-BST.prototype.depthFirstLog = function() {};
+BST.prototype.depthFirstLog = function(callback) {
+  
+  callback(this.value);
+
+  if (this.left) {
+    this.left.depthFirstLog(callback);
+  }
+  if (this.right) {
+    this.right.depthFirstLog(callback);
+  }
+
+};
 
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ Insert: Logarithmic - only inserts on one side
+ Contains: Logarithmic - only checks on one side
+ depthFirstLog: Linear - traverses entire tree
  */
