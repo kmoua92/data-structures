@@ -7,6 +7,14 @@ var HashTable = function() {
 
 HashTable.prototype.insert = function(key, value) {
   var index = getIndexBelowMaxForKey(key, this._limit);
+  // console.log(this);
+  // this._storage.each(function(item) {
+  //   console.log(item);
+  //   if (storIndex === index) {
+  //     console.log('something here');
+  //   } else {
+  //   }
+  // });
   this._storage.set(index, value);
 };
 
