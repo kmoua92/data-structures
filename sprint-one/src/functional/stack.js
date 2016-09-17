@@ -1,4 +1,4 @@
-var Stack = function() {
+var Stack = function newStack() {
   var someInstance = {};
 
   // Use an object with numeric keys to store values
@@ -6,12 +6,12 @@ var Stack = function() {
   var storageLength = 0;
 
   // Implement the methods below
-  someInstance.push = function(value) {
+  someInstance.push = function stackPush(value) {
     storage[storageLength] = value;
     storageLength++;
   };
 
-  someInstance.pop = function() {
+  someInstance.pop = function stackPop() {
 
     if (storageLength > 0) {
       storageLength--;
@@ -21,7 +21,7 @@ var Stack = function() {
     return popped;
   };
 
-  someInstance.size = function() {
+  someInstance.size = function stackSize() {
     return storageLength;
   };
 
